@@ -4,6 +4,7 @@ set(CMAKE_LEGACY_CYGWIN_WIN32 OFF)
 project(cpp_console_app_project CXX)
 
 add_subdirectory("third_party/whereami2cpp")
+add_subdirectory("third_party/glad")
 
 add_executable(cpp_console_app "source/main.cpp")
 set_property(TARGET cpp_console_app PROPERTY CXX_STANDARD 20)
