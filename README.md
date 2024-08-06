@@ -28,7 +28,18 @@ Once you are done, you can generate the build files with cmake presets.
 ```
 cmake --presets ninja-release
 ```
-And then, just go to `../build_cmake/ninja-release/` and execute `ninja` and you will get your binary file.
+And then, just go to `../build_cmake/ninja-release/` and execute
+```
+ninja
+```
+and you will get your binary file in the build directory. To install the target just execute
+```
+ninja install
+```
+your binary will be copied to `../install_cmake/ninja-release/`. It will be free from every other build dependency or CMake artifact.
+
 You can also get a Visual Studio solution file for your convenience, check [CMakePresets.json](CMakePresets.json) file.
 
-You should have [cmake](https://cmake.org/), [ninja](https://ninja-build.org/) and a compiler such as [Visual Studio Community](https://visualstudio.microsoft.com/vs/community/) availables in your development environment.
+## Dependencies
+
+You should have [cmake](https://cmake.org/), [ninja](https://ninja-build.org/) and [Visual Studio Community](https://visualstudio.microsoft.com/vs/community/) (or another proper compiler) in your development environment.
