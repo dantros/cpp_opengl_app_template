@@ -156,7 +156,7 @@ int main(int argc, char *argv[])
     // build and compile our shader program
     
     // vertex shader
-    unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
+    const unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
     const GLchar* vertexShaderSource_c_str = static_cast<const GLchar*>(vertexShaderSource.c_str());
     glShaderSource(vertexShader, 1, &vertexShaderSource_c_str, NULL);
     glCompileShader(vertexShader);
@@ -170,7 +170,7 @@ int main(int argc, char *argv[])
         spdlog::error("Vertex shader compilation failed {}", infoLog);
     }
     // fragment shader
-    unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    const unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     const GLchar* fragmentShaderSource_c_str = static_cast<const GLchar*>(fragmentShaderSource.c_str());
     glShaderSource(fragmentShader, 1, &fragmentShaderSource_c_str, NULL);
     glCompileShader(fragmentShader);
@@ -182,7 +182,7 @@ int main(int argc, char *argv[])
         spdlog::error("Fragment shader compilation failed {}", infoLog);
     }
     // link shaders
-    unsigned int shaderProgram = glCreateProgram();
+    const unsigned int shaderProgram = glCreateProgram();
     glAttachShader(shaderProgram, vertexShader);
     glAttachShader(shaderProgram, fragmentShader);
     glLinkProgram(shaderProgram);
@@ -213,11 +213,11 @@ int main(int argc, char *argv[])
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), indices.data(), GL_STATIC_DRAW);
 
-    auto position = glGetAttribLocation(shaderProgram, "position");
+    const unsigned int position = glGetAttribLocation(shaderProgram, "position");
     glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(position);
 
-    auto color = glGetAttribLocation(shaderProgram, "color");
+    const unsigned int color = glGetAttribLocation(shaderProgram, "color");
     glVertexAttribPointer(color, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(color);
 
@@ -263,7 +263,7 @@ int main(int argc, char *argv[])
         glUseProgram(shaderProgram);
 
         glBindVertexArray(VAO);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
 
         ImGui::Render();
