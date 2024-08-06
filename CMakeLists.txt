@@ -20,4 +20,4 @@ target_include_directories(cpp_opengl_app PRIVATE
     "third_party/glm/include"
     "third_party/imgui"
 )
-target_link_libraries(cpp_opengl_app PRIVATE whereami2cpp glad glfw)
+target_link_libraries(cpp_opengl_app PRIVATE whereami2cpp glad glfw imgui)
