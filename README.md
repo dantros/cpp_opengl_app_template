@@ -14,7 +14,9 @@ It includes a minimal setup with the following libraries:
 
 CMake is used as build system and it should work out of the box.
 
-`main.cpp` includes a working code using all libraries.
+[`main.cpp`](source/main.cpp) includes demo code using all mentioned libraries.
+
+![screenshot](assets/screenshot.webp "screenshot")
 
 ## Quick start
 
