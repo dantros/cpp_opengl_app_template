@@ -15,6 +15,7 @@ add_subdirectory("third_party/glfw")
 add_subdirectory("third_party/whereami2cpp")
 add_subdirectory("third_party/glad")
 add_subdirectory("third_party/imgui_cmake")
+add_subdirectory("third_party/stb")
 
 add_executable(cpp_opengl_app "source/main.cpp")
 set_property(TARGET cpp_opengl_app PROPERTY CXX_STANDARD 20)
