@@ -11,16 +11,24 @@
             "description": "Default setting",
             "hidden": true,
             "generator": "Ninja",
-            "binaryDir": "${sourceDir}/../build_cmake/${presetName}",
+            "binaryDir": "${sourceDir}/../build/${presetName}",
+            "installDir": "${sourceDir}/../install/${presetName}",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",
-                "CMAKE_EXPORT_COMPILE_COMMANDS": "Yes",
-                "CMAKE_INSTALL_PREFIX": "${sourceDir}/../install_cmake/${presetName}"
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "Yes"
+            }
+        },
+        {
+            "name": "windows-base",
+            "inherits": "base",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_CXX_COMPILER": "cl"
             }
         },
         {
             "name": "ninja-release",
-            "inherits": "base",
+            "inherits": "windows-base",
             "hidden": false,
             "generator": "Ninja",
             "cacheVariables": {
@@ -28,23 +36,72 @@
             }
         },
         {
-            "name": "vs-debug",
-            "inherits": "base",
+            "name": "ninja-debug",
+            "inherits": "windows-base",
             "hidden": false,
-            "generator": "Visual Studio 17 2022",
+            "generator": "Ninja",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
             }
         },
         {
-            "name": "linux-debug",
-            "inherits": "base",
+            "name": "msbuild",
+            "inherits": "windows-base",
             "hidden": false,
+            "generator": "Visual Studio 17 2022"
+        },
+        {
+            "name": "linux-base",
+            "inherits": "base",
+            "hidden": true,
             "generator": "Unix Makefiles",
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug",
                 "CMAKE_CXX_COMPILER": "g++"
             }
+        },
+        {
+            "name": "linux-release",
+            "inherits": "linux-base",
+            "hidden": false,
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "linux-debug",
+            "inherits": "linux-base",
+            "hidden": false,
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "ninja-release",
+            "configurePreset": "ninja-release"
+        },
+        {
+            "name": "ninja-debug",
+            "configurePreset": "ninja-debug"
+        },
+        {
+            "name": "vs-release",
+            "configurePreset": "msbuild",
+            "configuration": "Release"
+        },
+        {
+            "name": "vs-debug",
+            "configurePreset": "msbuild",
+            "configuration": "Debug"
+        },
+        {
+            "name": "linux-release",
+            "configurePreset": "linux-release"
+        },
+        {
+            "name": "linux-debug",
+            "configurePreset": "linux-debug"
         }
     ]
 }
